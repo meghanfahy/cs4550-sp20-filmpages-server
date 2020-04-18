@@ -5,6 +5,7 @@ import com.example.cs4550sp20filmpagesserver.services.MoviegoerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -14,9 +15,17 @@ public class MoviegoerController {
     @Autowired
     MoviegoerService service;
 
-    @PostMapping("/api/moviegoers")
-    public Moviegoer createMoviegoer(@RequestBody Moviegoer moviegoer) {
-        return service.createMoviegoer(moviegoer);
+    @GetMapping("/profile")
+    public Moviegoer getLoggedInMoviegoer(HttpSession session) {
+        return (Moviegoer) session.getAttribute("profile");
+    }
+
+    @PostMapping("/register")
+    public Moviegoer createMoviegoer(HttpSession session,
+                                     @RequestBody Moviegoer moviegoer) {
+        Moviegoer newMoviegoer = service.createMoviegoer(moviegoer);
+        session.setAttribute("profile", newMoviegoer);
+        return newMoviegoer;
     }
 
 

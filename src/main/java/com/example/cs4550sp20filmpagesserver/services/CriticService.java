@@ -41,4 +41,8 @@ public class CriticService {
     return criticRepo.findCriticById(criticId);
   }
 
+  public Critic findCriticByCredentials(String username, String password) {
+    return criticRepo.findCriticByCredentials(username, password);
+  }
+
 }

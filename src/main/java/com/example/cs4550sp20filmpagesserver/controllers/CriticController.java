@@ -40,4 +40,10 @@ public class CriticController {
     return service.findCriticById(criticId);
   }
 
+  @GetMapping("/api/critics/{username}/{password}")
+  public Critic findCriticByCredentials(@PathVariable("username") String username,
+                                        @PathVariable("password") String password) {
+    return service.findCriticByCredentials(username, password);
+  }
+
 }

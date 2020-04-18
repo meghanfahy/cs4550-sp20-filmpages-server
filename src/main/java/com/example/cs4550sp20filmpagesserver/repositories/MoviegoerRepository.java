@@ -9,10 +9,15 @@ import java.util.List;
 
 public interface MoviegoerRepository extends CrudRepository<Moviegoer, Integer> {
     @Query("SELECT moviegoer FROM Moviegoer moviegoer")
-    public List<Moviegoer> findAllMoviegoers();
+    List<Moviegoer> findAllMoviegoers();
 
     @Query("SELECT moviegoer FROM Moviegoer moviegoer WHERE moviegoer.id=:moviegoerId")
-    public Moviegoer findMoviegoerById(@Param("moviegoerId") Integer moviegoerId);
+    Moviegoer findMoviegoerById(@Param("moviegoerId") Integer moviegoerId);
+
+    @Query("SELECT moviegoer FROM Moviegoer moviegoer WHERE " +
+            "moviegoer.username=:username AND moviegoer.password=:password")
+    Moviegoer findMoviegoerByCredentials(@Param("username") String username,
+                                         @Param("password") String password);
 
 //    @Modifying
 //    @Query("UPDATE Moviegoer moviegoer SET moviegoer=:moviegoer WHERE moviegoer.id=:moviegoerId")

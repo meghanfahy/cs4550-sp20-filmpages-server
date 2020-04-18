@@ -9,10 +9,15 @@ import java.util.List;
 
 public interface CriticRepository extends CrudRepository<Critic, Integer> {
     @Query("SELECT critic FROM Critic critic")
-    public List<Critic> findAllCritics();
+    List<Critic> findAllCritics();
 
     @Query("SELECT critic FROM Critic critic WHERE critic.id=:criticId")
-    public Critic findCriticById(@Param("criticId") Integer topicId);
+    Critic findCriticById(@Param("criticId") Integer topicId);
+
+    @Query("SELECT critic FROM Critic critic WHERE " +
+            "critic.username=:username AND critic.password=:password")
+    Critic findCriticByCredentials(@Param("username") String username,
+                                   @Param("password") String password);
 
 //  @Modifying
 //  @Query("UPDATE Critic critic SET critic=:critic WHERE critic.id=:criticId")

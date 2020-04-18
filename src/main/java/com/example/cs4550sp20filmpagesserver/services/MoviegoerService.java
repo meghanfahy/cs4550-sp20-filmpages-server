@@ -43,4 +43,8 @@ public class MoviegoerService {
         return moviegoerRepo.findMoviegoerById(moviegoerId);
     }
 
+    public Moviegoer findMoviegoerByCredentials(String username, String password) {
+        return moviegoerRepo.findMoviegoerByCredentials(username, password);
+    }
+
 }

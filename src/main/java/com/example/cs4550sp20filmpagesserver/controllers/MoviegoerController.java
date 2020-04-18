@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 @CrossOrigin(origins = "*")
 public class MoviegoerController {
   @Autowired
-  MoviegoerService service = new MoviegoerService();
+  MoviegoerService service;
 
-  @PostMapping("/api/moviegoers/{moviegoerId}")
+  @PostMapping("/api/moviegoers")
   public Moviegoer createMoviegoer(@RequestBody Moviegoer moviegoer) {
     return service.createMoviegoer(moviegoer);
   }

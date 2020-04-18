@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 @CrossOrigin(origins = "*")
 public class CriticController {
   @Autowired
-  CriticService service = new CriticService();
+  CriticService service;
 
-  @PostMapping("/api/critics/{criticId}")
+  @PostMapping("/api/critics")
   public Critic createCritic(@RequestBody Critic critic) {
     return service.createCritic(critic);
   }

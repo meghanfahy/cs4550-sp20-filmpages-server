@@ -1,15 +1,15 @@
 package com.example.cs4550sp20filmpagesserver.controllers;
 
-import com.example.cs4550sp20filmpagesserver.services.CriticService;
 import com.example.cs4550sp20filmpagesserver.models.Critic;
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
+import com.example.cs4550sp20filmpagesserver.services.CriticService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", allowCredentials = "true")
 public class CriticController {
   @Autowired
   CriticService service;

@@ -25,8 +25,16 @@ public class CriticService {
   }
 
   public int updateCritic(Integer criticId, Critic updatedCritic) {
-    criticRepo.updateCritic(updatedCritic, criticId);
-    return 1;
+    if (criticRepo.existsById(criticId)) {
+      updatedCritic.fillBlanks(criticRepo.findCriticById(criticId));
+      updatedCritic.setId(criticId);
+      criticRepo.save(updatedCritic);
+      return 1;
+    } else {
+      return 0;
+    }
+//    criticRepo.updateCritic(updatedCritic, criticId);
+//    return 1;
   }
 
   public Critic findCriticById(Integer criticId) {

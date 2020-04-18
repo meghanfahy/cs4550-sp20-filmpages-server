@@ -1,58 +1,63 @@
 package com.example.cs4550sp20filmpagesserver.models;
 
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-import java.util.Date;
 
 
 @Entity
 @Table(name = "critics")
 public class Critic {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  private String name;
+    private String name;
 
-  @JsonIgnore
-  @ManyToOne
+//  @JsonIgnore
+//  @ManyToOne
 
-  private Integer dob;
+    private Integer dob;
 
-  // Constructor
-  public Critic(String name, Integer dob) {
-    this.name = name;
-    this.dob = dob;
-  }
+    // Constructor
+    public Critic(String name, Integer dob) {
+        this.name = name;
+        this.dob = dob;
+    }
 
 
-  public Critic() {
-  }
+    public Critic() {
+    }
 
-  public Integer getId() {
-    return id;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Integer getDob() {
-    return dob;
-  }
+    public Integer getDob() {
+        return dob;
+    }
 
-  public void setDob(Integer dob) {
-    this.dob = dob;
-  }
+    public void setDob(Integer dob) {
+        this.dob = dob;
+    }
+
+    public void fillBlanks(Critic other) {
+        if (this.name == null) {
+            this.name = other.name;
+        }
+        if (this.dob == null) {
+            this.dob = other.dob;
+        }
+    }
 }

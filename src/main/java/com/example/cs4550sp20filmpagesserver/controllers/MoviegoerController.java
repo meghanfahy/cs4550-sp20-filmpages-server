@@ -24,7 +24,9 @@ public class MoviegoerController {
     public Moviegoer createMoviegoer(HttpSession session,
                                      @RequestBody Moviegoer moviegoer) {
         Moviegoer newMoviegoer = service.createMoviegoer(moviegoer);
-        session.setAttribute("profile", newMoviegoer);
+        if (newMoviegoer != null) {
+            session.setAttribute("profile", newMoviegoer);
+        }
         return newMoviegoer;
     }
 

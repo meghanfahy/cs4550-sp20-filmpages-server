@@ -44,14 +44,18 @@ public class MoviegoerService {
     }
 
     public Moviegoer findMoviegoerByCredentials(String username, String password) {
-        Moviegoer resp = moviegoerRepo.findMoviegoerByCredentials(username,
-                password);
+        Moviegoer resp = moviegoerRepo.findMoviegoerByUsername(username);
         System.out.println("=== Fetching user by credentials.");
         System.out.println("Username " + username);
         System.out.println("Password " + password);
         System.out.println("Fetched Username " + resp.getUsername());
-        System.out.println("===");
-        return resp;
+        if (resp.getPassword().equals(password)) {
+            System.out.println("=== Correct password!");
+            return resp;
+        } else {
+            System.out.println("=== Incorrect password!");
+            return null;
+        }
     }
 
 }

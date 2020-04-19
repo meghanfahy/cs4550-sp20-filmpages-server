@@ -19,6 +19,9 @@ public interface MoviegoerRepository extends CrudRepository<Moviegoer, Integer> 
     Moviegoer findMoviegoerByCredentials(@Param("username") String username,
                                          @Param("password") String password);
 
+    @Query("SELECT moviegoer FROM Moviegoer moviegoer WHERE moviegoer.username=:username")
+    Moviegoer findMoviegoerByUsername(@Param("username") String username);
+
 //    @Modifying
 //    @Query("UPDATE Moviegoer moviegoer SET moviegoer=:moviegoer WHERE moviegoer.id=:moviegoerId")
 //    public int updateMoviegoer(@Param("moviegoer") Moviegoer moviegoer, @Param("moviegoerId") Integer moviegoerId);

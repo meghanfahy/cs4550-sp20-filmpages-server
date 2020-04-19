@@ -40,9 +40,15 @@ public class MoviegoerController {
     }
 
     @GetMapping("/login/{username}/{password}")
-    public Moviegoer findMoviegoerByCredentials(@PathVariable("username") String username,
+    public Moviegoer findMoviegoerByCredentials(HttpSession session,
+                                                @PathVariable("username") String username,
                                                 @PathVariable("password") String password) {
-        return service.findMoviegoerByCredentials(username, password);
+        Moviegoer moviegoer = service.findMoviegoerByCredentials(username,
+                password);
+        if (moviegoer != null) {
+            session.setAttribute("profile", moviegoer);
+        }
+        return moviegoer;
     }
 
     @PutMapping("/api/moviegoers/{moviegoerId}")

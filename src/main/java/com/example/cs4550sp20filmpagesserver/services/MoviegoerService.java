@@ -18,7 +18,11 @@ public class MoviegoerService {
     }
 
     public Moviegoer createMoviegoer(Moviegoer moviegoer) {
-        return moviegoerRepo.save(moviegoer);
+        if (moviegoerRepo.findMoviegoerByUsername(moviegoer.getUsername()) != null) {
+            return null; // Already exists by username.
+        } else {
+            return moviegoerRepo.save(moviegoer);
+        }
     }
 
     public int deleteMoviegoer(Integer moviegoerId) {

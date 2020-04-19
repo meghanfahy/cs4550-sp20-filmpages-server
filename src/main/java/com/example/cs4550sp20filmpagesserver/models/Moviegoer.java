@@ -3,6 +3,8 @@ package com.example.cs4550sp20filmpagesserver.models;
 import javax.persistence.*;
 
 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "USR_TYPE")
 @Entity
 @Table(name = "moviegoers")
 public class Moviegoer {
@@ -15,17 +17,14 @@ public class Moviegoer {
     private String username;
 
     private String name;
-
-//    @JsonIgnore
-//    @ManyToOne
-//    private List<Review> reviews;
-
     private Integer dob;
 
-    // Constructor
-    public Moviegoer(String name, Integer dob) {
+    public Moviegoer(String name, Integer dob,
+                     String password, String username) {
         this.name = name;
         this.dob = dob;
+        this.password = password;
+        this.username = username;
     }
 
     public Moviegoer() {

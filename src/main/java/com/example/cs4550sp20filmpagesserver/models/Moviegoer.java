@@ -1,5 +1,7 @@
 package com.example.cs4550sp20filmpagesserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -13,7 +15,9 @@ public class Moviegoer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonIgnore // What's the best way to do this?
     private String password;
+
     private String username;
 
     private String name;

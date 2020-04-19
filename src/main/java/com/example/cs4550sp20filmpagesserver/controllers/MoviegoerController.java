@@ -28,6 +28,20 @@ public class MoviegoerController {
         return newMoviegoer;
     }
 
+    @PostMapping("/logout")
+    public int logout(HttpSession session) {
+        if (session.getAttribute("profile") == null) {
+            return 0;
+        }
+        session.removeAttribute("profile");
+        return 1;
+    }
+
+    @GetMapping("/login/{username}/{password}")
+    public Moviegoer findMoviegoerByCredentials(@PathVariable("username") String username,
+                                                @PathVariable("password") String password) {
+        return service.findMoviegoerByCredentials(username, password);
+    }
 
     @PutMapping("/api/moviegoers/{moviegoerId}")
     public int updateMoviegoer(@PathVariable("moviegoerId") Integer moviegoerId, @RequestBody Moviegoer moviegoer) {
@@ -47,12 +61,6 @@ public class MoviegoerController {
     @GetMapping("/api/moviegoers/{moviegoerId}")
     public Moviegoer findMoviergoerById(@PathVariable("moviegoerId") Integer moviegoerId) {
         return service.findMoviergoerById(moviegoerId);
-    }
-
-    @GetMapping("/api/moviegoers/{username}/{password}")
-    public Moviegoer findMoviegoerByCredentials(@PathVariable("username") String username,
-                                                @PathVariable("password") String password) {
-        return service.findMoviegoerByCredentials(username, password);
     }
 
 }

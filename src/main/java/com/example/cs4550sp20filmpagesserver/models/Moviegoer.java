@@ -21,9 +21,10 @@ public class Moviegoer {
     private String username;
 
     private String name;
-    private Integer dob;
 
-    public Moviegoer(String name, Integer dob,
+    private java.sql.Date dob;
+
+    public Moviegoer(String name, java.sql.Date dob,
                      String password, String username) {
         this.name = name;
         this.dob = dob;
@@ -81,11 +82,11 @@ public class Moviegoer {
         this.name = name;
     }
 
-    public Integer getDob() {
+    public java.sql.Date getDob() {
         return dob;
     }
 
-    public void setDob(Integer dob) {
+    public void setDob(java.sql.Date dob) {
         this.dob = dob;
     }
 }

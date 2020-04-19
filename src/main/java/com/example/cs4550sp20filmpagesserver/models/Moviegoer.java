@@ -58,6 +58,12 @@ public class Moviegoer {
         this.password = password;
     }
 
+    public boolean checkPassword(String password) {
+        System.out.println("Actual Password: " + this.password);
+        System.out.println("Queried Password: " + password);
+        return this.password.equals(password);
+    }
+
     public String getUsername() {
         return username;
     }

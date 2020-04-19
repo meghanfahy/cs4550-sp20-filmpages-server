@@ -53,7 +53,7 @@ public class MoviegoerService {
         System.out.println("Username " + username);
         System.out.println("Password " + password);
         System.out.println("Fetched Username " + resp.getUsername());
-        if (resp.getPassword().equals(password)) {
+        if (resp.checkPassword(password)) {
             System.out.println("=== Correct password!");
             return resp;
         } else {

@@ -33,7 +33,7 @@ public class MoviegoerController {
         if (session.getAttribute("profile") == null) {
             return 0;
         }
-        session.removeAttribute("profile");
+        session.setAttribute("profile", null);
         return 1;
     }
 

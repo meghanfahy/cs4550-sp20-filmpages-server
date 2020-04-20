@@ -122,6 +122,30 @@ public class Moviegoer {
     public void setFavoritedCinemas(List<String> favoritedCinemas) {
         this.favoritedCinemas = favoritedCinemas;
     }
+
+    public boolean addFavoriteCinema(String cinemaId) {
+        if (this.favoritedCinemas.contains(cinemaId)) {
+            return false;
+        }
+        this.favoritedCinemas.add(cinemaId);
+        return true;
+    }
+
+    public boolean removeFavoriteCinema(String cinemaId) {
+        return this.favoritedCinemas.remove(cinemaId);
+    }
+
+    public boolean addFavoriteMovie(String movieId) {
+        if (this.favoritedMovies.contains(movieId)) {
+            return false;
+        }
+        this.favoritedMovies.add(movieId);
+        return true;
+    }
+
+    public boolean removeFavoriteMovie(String movieId) {
+        return this.favoritedMovies.remove(movieId);
+    }
 }
 
 

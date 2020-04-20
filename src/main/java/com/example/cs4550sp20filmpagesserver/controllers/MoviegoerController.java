@@ -72,4 +72,44 @@ public class MoviegoerController {
         return service.findMoviergoerById(moviegoerId);
     }
 
+    @PostMapping("/profile/favoritedCinemas/{cinemaId}")
+    public int addFavoriteCinema(HttpSession session,
+                                 @PathVariable("cinemaId") String cinemaId) {
+        Moviegoer user = (Moviegoer) session.getAttribute("profile");
+        if (user == null) {
+            return 0;
+        }
+        return user.addFavoriteCinema(cinemaId) ? 1 : 0;
+    }
+
+    @DeleteMapping("/profile/favoritedCinemas/{cinemaId}")
+    public int removeFavoriteCinema(HttpSession session,
+                                    @PathVariable("cinemaId") String cinemaId) {
+        Moviegoer user = (Moviegoer) session.getAttribute("profile");
+        if (user == null) {
+            return 0;
+        }
+        return user.removeFavoriteCinema(cinemaId) ? 1 : 0;
+    }
+
+    @PostMapping("/profile/favoritedMovies/{movieId}")
+    public int addFavoriteMovie(HttpSession session,
+                                @PathVariable("movieId") String movieId) {
+        Moviegoer user = (Moviegoer) session.getAttribute("profile");
+        if (user == null) {
+            return 0;
+        }
+        return user.addFavoriteMovie(movieId) ? 1 : 0;
+    }
+
+    @DeleteMapping("/profile/favoritedMovies/{movieId}")
+    public int removeFavoriteMovie(HttpSession session,
+                                   @PathVariable("movieId") String movieId) {
+        Moviegoer user = (Moviegoer) session.getAttribute("profile");
+        if (user == null) {
+            return 0;
+        }
+        return user.removeFavoriteMovie(movieId) ? 1 : 0;
+    }
+
 }

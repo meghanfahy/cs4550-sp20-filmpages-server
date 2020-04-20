@@ -56,4 +56,36 @@ public class MoviegoerService {
         }
     }
 
+    public int addFavoriteCinema(Moviegoer user, String cinemaId) {
+        boolean b = user.addFavoriteCinema(cinemaId);
+        if (b) {
+            moviegoerRepo.save(user);
+        }
+        return b ? 1 : 0;
+    }
+
+    public int removeFavoriteCinema(Moviegoer user, String cinemaId) {
+        boolean b = user.removeFavoriteCinema(cinemaId);
+        if (b) {
+            moviegoerRepo.save(user);
+        }
+        return b ? 1 : 0;
+    }
+
+    public int addFavoriteMovie(Moviegoer user, String movieId) {
+        boolean b = user.addFavoriteMovie(movieId);
+        if (b) {
+            moviegoerRepo.save(user);
+        }
+        return b ? 1 : 0;
+    }
+
+    public int removeFavoriteMovie(Moviegoer user, String movieId) {
+        boolean b = user.removeFavoriteMovie(movieId);
+        if (b) {
+            moviegoerRepo.save(user);
+        }
+        return b ? 1 : 0;
+    }
+
 }

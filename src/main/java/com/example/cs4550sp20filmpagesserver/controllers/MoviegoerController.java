@@ -79,7 +79,7 @@ public class MoviegoerController {
         if (user == null) {
             return 0;
         }
-        return user.addFavoriteCinema(cinemaId) ? 1 : 0;
+        return service.addFavoriteCinema(user, cinemaId);
     }
 
     @DeleteMapping("/profile/favoritedCinemas/{cinemaId}")
@@ -89,7 +89,7 @@ public class MoviegoerController {
         if (user == null) {
             return 0;
         }
-        return user.removeFavoriteCinema(cinemaId) ? 1 : 0;
+        return service.removeFavoriteCinema(user, cinemaId);
     }
 
     @PostMapping("/profile/favoritedMovies/{movieId}")
@@ -99,7 +99,7 @@ public class MoviegoerController {
         if (user == null) {
             return 0;
         }
-        return user.addFavoriteMovie(movieId) ? 1 : 0;
+        return service.addFavoriteMovie(user, movieId);
     }
 
     @DeleteMapping("/profile/favoritedMovies/{movieId}")
@@ -109,7 +109,7 @@ public class MoviegoerController {
         if (user == null) {
             return 0;
         }
-        return user.removeFavoriteMovie(movieId) ? 1 : 0;
+        return service.removeFavoriteMovie(user, movieId);
     }
 
 }

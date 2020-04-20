@@ -1,7 +1,7 @@
 package com.example.cs4550sp20filmpagesserver.models;
 
 import javax.persistence.*;
-
+import java.util.List;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "USR_TYPE")
@@ -22,12 +22,21 @@ public class Moviegoer {
 
     private java.sql.Date dob;
 
+    @ElementCollection
+    private List<String> favoritedMovies;
+
+    @ElementCollection
+    private List<String> favoritedCinemas;
+
     public Moviegoer(String name, java.sql.Date dob,
-                     String password, String username) {
+                     String password, String username,
+                     List<String> favoritedMovies, List<String> favoritedCinemas) {
         this.name = name;
         this.dob = dob;
         this.password = password;
         this.username = username;
+        this.favoritedMovies = favoritedMovies;
+        this.favoritedCinemas = favoritedCinemas;
     }
 
     public Moviegoer() {
@@ -46,6 +55,12 @@ public class Moviegoer {
         if (this.password == null) {
             this.password = other.password;
         }
+        if (this.favoritedMovies == null) {
+            this.favoritedMovies = other.favoritedMovies;
+        }
+        if (this.favoritedCinemas == null) {
+            this.favoritedCinemas = other.favoritedCinemas;
+        }
     }
 
     public String getPassword() {
@@ -57,8 +72,6 @@ public class Moviegoer {
     }
 
     public boolean checkPassword(String password) {
-        System.out.println("Actual Password: " + this.password);
-        System.out.println("Queried Password: " + password);
         return this.password.equals(password);
     }
 
@@ -92,6 +105,22 @@ public class Moviegoer {
 
     public void setDob(java.sql.Date dob) {
         this.dob = dob;
+    }
+
+    public List<String> getFavoritedMovies() {
+        return favoritedMovies;
+    }
+
+    public void setFavoritedMovies(List<String> favoritedMovies) {
+        this.favoritedMovies = favoritedMovies;
+    }
+
+    public List<String> getFavoritedCinemas() {
+        return favoritedCinemas;
+    }
+
+    public void setFavoritedCinemas(List<String> favoritedCinemas) {
+        this.favoritedCinemas = favoritedCinemas;
     }
 }
 

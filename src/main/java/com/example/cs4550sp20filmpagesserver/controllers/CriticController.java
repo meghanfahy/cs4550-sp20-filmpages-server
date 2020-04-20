@@ -19,7 +19,6 @@ public class CriticController {
         return service.createCritic(critic);
     }
 
-
     @PutMapping("/api/critics/{criticId}")
     public int updateCritic(@PathVariable("criticId") Integer criticId, @RequestBody Critic critic) {
         return service.updateCritic(criticId, critic);

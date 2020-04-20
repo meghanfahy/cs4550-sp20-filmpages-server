@@ -39,6 +39,7 @@ public class MoviegoerController {
         return 1;
     }
 
+    // TODO: Make this more secure (i.e., don't include stuff in uri)
     @GetMapping("/login/{username}/{password}")
     public Moviegoer findMoviegoerByCredentials(HttpSession session,
                                                 @PathVariable("username") String username,

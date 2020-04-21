@@ -17,5 +17,9 @@ public interface ReviewsRepository extends CrudRepository<Reviews, Integer> {
 
 @Query("SELECT review FROM Reviews review WHERE " +
         "review.critic=:critic")
-  List<Reviews> findReviewsByCriticId(@Param("critic") Critic critic);}
+  List<Reviews> findReviewsByCriticId(@Param("critic") Critic critic);
+
+  @Query("SELECT review FROM Reviews review WHERE " +
+          "review.movie=:movie")
+  List<Reviews> findReviewsByMovieId(@Param("movie") String movie);}
 

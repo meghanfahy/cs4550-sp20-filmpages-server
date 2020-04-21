@@ -43,4 +43,8 @@ public class ReviewsService {
   public List<Reviews> findReviewByCriticId (Critic critic){
     return reviewsRepo.findReviewsByCriticId(critic);
   }
+
+  public List<Reviews> findReviewByMovieId(String movieId){
+    return reviewsRepo.findReviewsByMovieId(movieId);
+  }
 }

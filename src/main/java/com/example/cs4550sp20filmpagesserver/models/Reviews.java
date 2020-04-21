@@ -17,9 +17,12 @@ public class Reviews {
 
   private Critic critic;
 
-  public Reviews(String review, Critic critic){
+  private String movie;
+
+  public Reviews(String review, Critic critic, String movie){
     this.review = review;
     this.critic = critic;
+    this.movie = movie;
   }
 
   public Reviews(){}
@@ -30,6 +33,9 @@ public class Reviews {
     }
     if (this.critic == null){
       this.critic = other.critic;
+    }
+    if (this.movie == null){
+      this.movie = other.movie;
     }
   }
 
@@ -47,6 +53,14 @@ public class Reviews {
 
   public void setReview(String review){
     this.review = review;
+  }
+
+  public String getMovie(){
+    return movie;
+  }
+
+  public void setMovie(String movie){
+    this.movie = movie;
   }
 
   public Critic getCritic(){

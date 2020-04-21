@@ -43,7 +43,12 @@ public class RatingsController {
   }
 
   @GetMapping("/api/critics/{criticId}/ratings")
-  public List<Ratings> findRatingsByCriticId(@PathVariable("critics") Critic critic) {
-    return service.findRatingByCriticId(critic);
+  public List<Ratings> findRatingsByCriticId(@PathVariable("criticId") Critic criticId) {
+    return service.findRatingByCriticId(criticId);
+  }
+
+  @GetMapping("/api/movies/{movieId}/ratings")
+  public List<Ratings> findRatingsByMovieId(@PathVariable("movieId") String movieId) {
+    return service.findRatingByMovieId(movieId);
   }
 }

@@ -42,6 +42,10 @@ public class RatingsService {
   public List<Ratings> findRatingByCriticId (Critic critic){
     return ratingsRepo.findRatingsByCriticId(critic);
   }
+
+  public List<Ratings> findRatingByMovieId(String movieId){
+    return ratingsRepo.findRatingsByMovieId(movieId);
+  }
 }
 
 

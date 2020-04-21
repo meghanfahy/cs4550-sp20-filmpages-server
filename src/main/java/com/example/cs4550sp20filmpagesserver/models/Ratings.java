@@ -20,9 +20,12 @@ public class Ratings {
 
   private Critic critic;
 
-  public Ratings(Integer rating, Critic critic){
+  private String movie;
+
+  public Ratings(Integer rating, Critic critic, String movie){
     this.rating = rating;
     this.critic = critic;
+    this.movie = movie;
   }
 
   public Ratings(){}
@@ -33,6 +36,9 @@ public class Ratings {
     }
     if (this.critic == null){
       this.critic = other.critic;
+    }
+    if (this.movie == null){
+      this.movie = other.movie;
     }
   }
 
@@ -50,6 +56,14 @@ public class Ratings {
 
   public void setRating(Integer rating){
     this.rating = rating;
+  }
+
+  public String getMovie(){
+    return movie;
+  }
+
+  public void setMovie(String movie){
+    this.movie = movie;
   }
 
   public Critic getCritic(){

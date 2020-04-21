@@ -9,7 +9,8 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "https://cs4550-sp20-filmpages-demo2.herokuapp.com",
+@CrossOrigin(origins = {"http://localhost:3000",
+        "https://cs4550-sp20-filmpages-demo2.herokuapp.com"},
         allowCredentials = "true")
 public class CriticController {
     @Autowired

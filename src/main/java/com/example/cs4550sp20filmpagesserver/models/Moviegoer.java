@@ -1,7 +1,7 @@
 package com.example.cs4550sp20filmpagesserver.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "USR_TYPE")
@@ -23,14 +23,15 @@ public class Moviegoer {
     private java.sql.Date dob;
 
     @ElementCollection
-    private List<String> favoritedMovies;
+    private Set<String> favoritedMovies;
 
     @ElementCollection
-    private List<String> favoritedCinemas;
+    private Set<String> favoritedCinemas;
 
     public Moviegoer(String name, java.sql.Date dob,
                      String password, String username,
-                     List<String> favoritedMovies, List<String> favoritedCinemas) {
+                     Set<String> favoritedMovies,
+                     Set<String> favoritedCinemas) {
         this.name = name;
         this.dob = dob;
         this.password = password;
@@ -107,19 +108,19 @@ public class Moviegoer {
         this.dob = dob;
     }
 
-    public List<String> getFavoritedMovies() {
+    public Set<String> getFavoritedMovies() {
         return favoritedMovies;
     }
 
-    public void setFavoritedMovies(List<String> favoritedMovies) {
+    public void setFavoritedMovies(Set<String> favoritedMovies) {
         this.favoritedMovies = favoritedMovies;
     }
 
-    public List<String> getFavoritedCinemas() {
+    public Set<String> getFavoritedCinemas() {
         return favoritedCinemas;
     }
 
-    public void setFavoritedCinemas(List<String> favoritedCinemas) {
+    public void setFavoritedCinemas(Set<String> favoritedCinemas) {
         this.favoritedCinemas = favoritedCinemas;
     }
 

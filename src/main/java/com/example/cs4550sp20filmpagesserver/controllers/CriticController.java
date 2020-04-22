@@ -5,6 +5,7 @@ import com.example.cs4550sp20filmpagesserver.services.CriticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -17,7 +18,12 @@ public class CriticController {
     CriticService service;
 
     @PostMapping("/api/critics")
-    public Critic createCritic(@RequestBody Critic critic) {
+    public Critic createCritic(HttpSession session,
+                               @RequestBody Critic critic) {
+        Critic newCritic = service.createCritic(critic);
+        if (newCritic != null) {
+            session.setAttribute("profile", newCritic);
+        }
         return service.createCritic(critic);
     }
 

@@ -44,7 +44,7 @@ public class ReviewsController {
   }
 
   @GetMapping("/api/critics/{criticId}/reviews")
-  public List<Reviews> findReviewsByCriticId(@PathVariable("criticId") Critic criticId) {
+  public List<Reviews> findReviewsByCriticId(@PathVariable("criticId") int criticId) {
     return service.findReviewByCriticId(criticId);
   }
 

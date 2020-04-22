@@ -22,6 +22,8 @@ public class Moviegoer {
 
     private java.sql.Date dob;
 
+    private Boolean isCritic;
+
     @ElementCollection
     private Set<String> favoritedMovies;
 
@@ -31,13 +33,15 @@ public class Moviegoer {
     public Moviegoer(String name, java.sql.Date dob,
                      String password, String username,
                      Set<String> favoritedMovies,
-                     Set<String> favoritedCinemas) {
+                     Set<String> favoritedCinemas,
+                     Boolean isCritic) {
         this.name = name;
         this.dob = dob;
         this.password = password;
         this.username = username;
         this.favoritedMovies = favoritedMovies;
         this.favoritedCinemas = favoritedCinemas;
+        this.isCritic = isCritic;
     }
 
     public Moviegoer() {
@@ -61,6 +65,9 @@ public class Moviegoer {
         }
         if (this.favoritedCinemas == null) {
             this.favoritedCinemas = other.favoritedCinemas;
+        }
+        if (this.isCritic == null) {
+            this.isCritic = other.isCritic;
         }
     }
 
@@ -146,6 +153,14 @@ public class Moviegoer {
 
     public boolean removeFavoriteMovie(String movieId) {
         return this.favoritedMovies.remove(movieId);
+    }
+
+    public Boolean getCritic() {
+        return isCritic;
+    }
+
+    public void setCritic(Boolean critic) {
+        isCritic = critic;
     }
 }
 

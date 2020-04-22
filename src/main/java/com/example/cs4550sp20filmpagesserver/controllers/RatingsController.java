@@ -43,7 +43,7 @@ public class RatingsController {
   }
 
   @GetMapping("/api/critics/{criticId}/ratings")
-  public List<Ratings> findRatingsByCriticId(@PathVariable("criticId") Critic criticId) {
+  public List<Ratings> findRatingsByCriticId(@PathVariable("criticId") int criticId) {
     return service.findRatingByCriticId(criticId);
   }
 

@@ -13,11 +13,11 @@ public class Ratings {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
   private Integer id;
 
   private Integer rating;
 
+  @ManyToOne
   private Critic critic;
 
   private String movie;

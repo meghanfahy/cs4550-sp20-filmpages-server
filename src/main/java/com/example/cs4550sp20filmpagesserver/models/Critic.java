@@ -1,10 +1,12 @@
 package com.example.cs4550sp20filmpagesserver.models;
 
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @DiscriminatorValue("C")
@@ -13,89 +15,77 @@ public class Critic extends Moviegoer {
     // Stuff particular to Critics.
     // e.g. reviews/ratings
 
-  private Integer id;
+    @JsonIgnore
+    @OneToMany(mappedBy = "critic")
+    private List<Ratings> ratings;
 
-  private Ratings rating;
+    @JsonIgnore
+    @OneToMany(mappedBy = "critic")
+    private List<Reviews> reviews;
 
-  private Reviews review;
-
-  @ElementCollection
-  private Set<Ratings> ratings;
-
-  @ElementCollection
-  private Set<Reviews> reviews;
-
-  public Critic (Ratings rating, Reviews review, Set<Ratings> ratings, Set<Reviews> reviews){
-    this.rating = rating;
-    this.review = review;
-    this.ratings = ratings;
-    this.reviews = reviews;
-  }
-
-  public Critic(){}
-
-  public void fillBlanks(Critic other){
-    if (this.rating == null){
-      this.rating = other.rating;
+    public Critic(String name, java.sql.Date dob,
+                  String password, String username,
+                  Set<String> favoritedMovies,
+                  Set<String> favoritedCinemas,
+                  Boolean isCritic,
+                  List<Ratings> ratings,
+                  List<Reviews> reviews) {
+        super(name, dob, password, username, favoritedMovies,
+                favoritedCinemas, isCritic);
+        this.ratings = ratings;
+        this.reviews = reviews;
+        super.setCritic(true);
     }
-    if (this.review == null){
-      this.review = review;
+
+    public Critic() {
     }
-  }
 
-  public Ratings getRating(){
-    return rating;
-  }
-
-  public void setRating(Ratings rating){
-    this.rating = rating;
-  }
-
-  public Reviews getReview(){
-    return review;
-  }
-
-  public void setReview(Reviews review){
-    this.review = review;
-  }
-
-  public Set<Ratings> getRatings(){
-    return ratings;
-  }
-
-  public void setRatings(Set<Ratings> ratings){
-    this.ratings = ratings;
-  }
-
-  public Set<Reviews> getReviews(){
-    return reviews;
-  }
-
-  public void setReviews(Set<Reviews> reviews){
-    this.reviews = reviews;
-  }
-
-  public boolean addReview(Reviews reviewId) {
-    if (this.reviews.contains(reviewId)) {
-      return false;
+    public void fillBlanks(Critic other) {
+        if (this.ratings == null) {
+            this.ratings = other.ratings;
+        }
+        if (this.reviews == null) {
+            this.reviews = reviews;
+        }
     }
-    this.reviews.add(reviewId);
-    return true;
-  }
 
-  public boolean removeReview(Reviews reviewId) {
-    return this.reviews.remove(reviewId);
-  }
-
-  public boolean addRating(Ratings ratingId) {
-    if (this.ratings.contains(ratingId)) {
-      return false;
+    public List<Ratings> getRatings() {
+        return ratings;
     }
-    this.ratings.add(ratingId);
-    return true;
-  }
 
-  public boolean removeRating(Ratings ratingId) {
-    return this.ratings.remove(ratingId);
-  }
+    public void setRatings(List<Ratings> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<Reviews> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Reviews> reviews) {
+        this.reviews = reviews;
+    }
+
+    public boolean addReview(Reviews reviewId) {
+        if (this.reviews.contains(reviewId)) {
+            return false;
+        }
+        this.reviews.add(reviewId);
+        return true;
+    }
+
+    public boolean removeReview(Reviews reviewId) {
+        return this.reviews.remove(reviewId);
+    }
+
+    public boolean addRating(Ratings ratingId) {
+        if (this.ratings.contains(ratingId)) {
+            return false;
+        }
+        this.ratings.add(ratingId);
+        return true;
+    }
+
+    public boolean removeRating(Ratings ratingId) {
+        return this.ratings.remove(ratingId);
+    }
 }

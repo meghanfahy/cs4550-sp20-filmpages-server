@@ -15,6 +15,7 @@ public class Reviews {
 
   private String review;
 
+  @ManyToOne
   private Critic critic;
 
   private String movie;
